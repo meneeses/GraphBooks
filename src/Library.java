@@ -1,11 +1,16 @@
 /*
 INICIO DO CÓDIGO - LIVRARIA PUCPR
-CRIADO EM: 31/03/24
+CRIADO EM: 31/03/25
 FEITO POR: João Meneses
 DISCIPLINA: Métodos de Pesquisa e Ordenação em Estruturas de Dados
-DESCRIÇÃO: HashMap para representar grafos de livros em uma biblioteca
+DESCRIÇÃO:
+    - Implementação de uma biblioteca de livros com recomendações.
+    - Utiliza uma estrutura de grafo para armazenar os livros e suas recomendações.
+    - Permite adicionar livros, adicionar recomendações e imprimir o grafo de recomendações.
+    - Permite recomendar livros com base em um livro específico.
+
 Turma: 01
-ÚLTIMA ATUALIZAÇÃO: 31/03/24
+ÚLTIMA ATUALIZAÇÃO: 14/04/25
 
 OBS: Usando código e comentários em inglês para se adequar ao padrão internacional e treinar o idioma
 
@@ -15,57 +20,34 @@ FINALIZAÇÃO DO CÓDIGO EM:
 
 public class Library {
     public static void main(String[] args) {
+        BookBST tree = new BookBST();
 
-        BookGraph library = new BookGraph();
+        // Adding books
+        tree.insert(new Book("Grande Sertão: Veredas", "João Guimarães Rosa", 1956));
+        tree.insert(new Book("Dom Casmurro", "Machado de Assis", 1899));
+        tree.insert(new Book("Memórias Póstumas de Brás Cubas", "Machado de Assis", 1881));
+        tree.insert(new Book("O Cortiço", "Aluísio Azevedo", 1890));
+        tree.insert(new Book("Vidas Secas", "Graciliano Ramos", 1938));
+        tree.insert(new Book("A Hora da Estrela", "Clarice Lispector", 1977));
+        tree.insert(new Book("Capitães da Areia", "Jorge Amado", 1937));
+        tree.insert(new Book("Iracema", "José de Alencar", 1865));
+        tree.insert(new Book("Senhora", "José de Alencar", 1875));
+        tree.insert(new Book("Quincas Borba", "Machado de Assis", 1891));
 
-        // Creating some books
-        Book b1 = new Book("Grande Sertão: Veredas", "João Guimarães Rosa", 1956);
-        Book b2 = new Book("Dom Casmurro", "Machado de Assis", 1899);
-        Book b3 = new Book("Memórias Póstumas de Brás Cubas", "Machado de Assis", 1881);
-        Book b4 = new Book("O Cortiço", "Aluísio Azevedo", 1890);
-        Book b5 = new Book("Vidas Secas", "Graciliano Ramos", 1938);
-        Book b6 = new Book("A Hora da Estrela", "Clarice Lispector", 1977);
-        Book b7 = new Book("Capitães da Areia", "Jorge Amado", 1937);
-        Book b8 = new Book("Iracema", "José de Alencar", 1865);
-        Book b9 = new Book("Senhora", "José de Alencar", 1875);
-        Book b10 = new Book("Quincas Borba", "Machado de Assis", 1891);
+        // Showing the books in Order
+        tree.inOrderTraversal();
 
-        // Adding the books to the library
-        Book[] books = {b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};
-        for (Book book : books) {
-            library.addBook(book);
+        // Searching for a book
+        System.out.println("\n\uD83D\uDD0DBuscando livro: 'Dom Casmurro':");
+        Book found = tree.search("Dom Casmurro");
+
+        // Printing the result of the search
+        if (found != null){
+            System.out.println("Livro encontrado: " + found.getTitle() + " - " + found.getAuthor() + " - " + found.getPublicationYear());
+        } else {
+            System.out.println("Livro não encontrado.");
         }
 
-        // Adding two recommendations for each book
-        library.addRecommendation(b1, b2);
-        library.addRecommendation(b1, b3);
-        library.addRecommendation(b2, b4);
-        library.addRecommendation(b2, b1);
-        library.addRecommendation(b3, b10);
-        library.addRecommendation(b3, b5);
-        library.addRecommendation(b4, b6);
-        library.addRecommendation(b4, b7);
-        library.addRecommendation(b5, b1);
-        library.addRecommendation(b5, b6);
-        library.addRecommendation(b6, b2);
-        library.addRecommendation(b6, b8);
-        library.addRecommendation(b7, b3);
-        library.addRecommendation(b7, b9);
-        library.addRecommendation(b8, b1);
-        library.addRecommendation(b8, b10);
-        library.addRecommendation(b9, b6);
-        library.addRecommendation(b9, b4);
-        library.addRecommendation(b10, b2);
-        library.addRecommendation(b10, b5);
 
-        // Printing the graph of recommendations
-        library.printGraph();
-
-        // Recommendations for a specific book
-        System.out.println("\n=== 📚 Recomendações para um livro específico ===\n");
-        library.recommendBooks(b3);
-        library.recommendBooks(b8);
-        library.recommendBooks(b10);
-        library.recommendBooks(b5);
     }
 }

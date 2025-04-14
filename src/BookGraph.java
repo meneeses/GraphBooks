@@ -1,6 +1,6 @@
 import java.util.*;
 
-//
+// Create a class named BookGraph with a field named graph that is a map of Book objects to a set of Book objects.
 public class BookGraph {
     private final Map<Book, Set<Book>> graph;
 
