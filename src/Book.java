@@ -46,7 +46,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return title + " - " + author + " - " + publicationYear;
+        return "──────────────\n" +
+                "📖 Título: " + title + "\n" +
+                "✍️  Autor: " + author + "\n" +
+                "📅 Ano: " + publicationYear + "\n" +
+                "──────────────";
     }
+
 }
 

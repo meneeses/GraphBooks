@@ -30,7 +30,7 @@ public class BookBST {
     private void inOrderRec(BookNode node) {
         if (node != null) {
             inOrderRec(node.left);
-            System.out.println("➤ " + node.book);
+            System.out.println(node.book);
             inOrderRec(node.right);
         }
     }
